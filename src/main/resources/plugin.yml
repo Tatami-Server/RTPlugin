@@ -1,0 +1,4 @@
+name: RTPlugin
+version: ${project.version}
+main: net.kigawa.spigot.rtplugin.RTPlugin
+api-version: 1.16
