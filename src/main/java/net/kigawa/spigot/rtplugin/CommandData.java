@@ -13,6 +13,12 @@ public class CommandData {
         this.commands = commands;
     }
 
+    public CommandData(List<String> commands) {
+        this.hour = -1;
+        this.min = -1;
+        this.commands = commands;
+    }
+
     public int getMin() {
         return min;
     }

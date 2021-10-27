@@ -1,21 +1,21 @@
 package net.kigawa.spigot.rtplugin;
 
-import net.kigawa.spigot.rtplugin.util.plugin.all.PluginBase;
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.java.JavaPlugin;
 
 public abstract class Timer {
-    private final PluginBase plugin;
+    private final JavaPlugin plugin;
     private boolean timer = true;
     private int tick = 0;
     private int sec = 0;
     private int min = 0;
     private int hour = 0;
 
-    public Timer(PluginBase plugin) {
+    public Timer(JavaPlugin plugin) {
         this.plugin = plugin;
     }
 
-    public PluginBase getPlugin() {
+    public JavaPlugin getPlugin() {
         return plugin;
     }
 
