@@ -31,11 +31,13 @@ public final class RTPlugin extends JavaPlugin {
                     String[] time = fileName.split(";");
                     int hour = -1;
                     if (!time[0].equals("_")) {
-                        hour = Integer.getInteger(time[0]);
+                        System.out.println(time[0]);
+                        hour = Integer.parseInt(time[0]);
                     }
                     int min = -1;
                     if (!time[1].equals("_")) {
-                        min = Integer.getInteger(time[1]);
+                        System.out.println(time[1]);
+                        min = Integer.parseInt(time[1]);
                     }
                     try {
                         dataList.add(new CommandData(hour, min, Files.readAllLines(file.getAbsoluteFile().toPath())));
