@@ -58,7 +58,7 @@ public final class RTPlugin extends JavaPlugin {
                 }
                 if (fileName.equals("sec") | fileName.equals("second")) {
                     try {
-                        tickCommands.addAll(Files.readAllLines(file.getAbsoluteFile().toPath()));
+                        secCommands.addAll(Files.readAllLines(file.getAbsoluteFile().toPath()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
