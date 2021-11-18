@@ -6,7 +6,7 @@
 
     <groupId>net.kigawa.spigot</groupId>
     <artifactId>RTPlugin</artifactId>
-    <version>1.4b</version>
+    <version>1.5b</version>
     <packaging>jar</packaging>
 
     <name>RTPlugin</name>
