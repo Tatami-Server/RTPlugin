@@ -2,6 +2,8 @@ package net.kigawa.spigot.rtplugin;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import net.kigawa.spigot.rtplugin.timer.GameTimer;
+import net.kigawa.spigot.rtplugin.timer.RealTimer;
 import org.bukkit.Server;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
@@ -67,7 +69,7 @@ public final class RTPlugin extends JavaPlugin implements Listener {
                 }
                 if (fileName.equals("sec") | fileName.equals("second")) {
                     try {
-                        tickCommands.addAll(Files.readAllLines(file.getAbsoluteFile().toPath()));
+                        secCommands.addAll(Files.readAllLines(file.getAbsoluteFile().toPath()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -102,7 +104,7 @@ public final class RTPlugin extends JavaPlugin implements Listener {
     }
 }
 
-class CommandExecutor extends Timer {
+class CommandExecutor extends RealTimer {
     private final List<CommandData> dataList;
     private final List<String> tickCommands;
     private final List<String> secCommands;
