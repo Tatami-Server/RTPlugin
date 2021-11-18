@@ -1,8 +1,17 @@
 package net.kigawa.spigot.rtplugin;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.Server;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Scoreboard;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,13 +19,15 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 
-public final class RTPlugin extends JavaPlugin {
+public final class RTPlugin extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
         File commandsDir = new File(getDataFolder(), "commands");
         commandsDir.mkdirs();
+        Bukkit.getPluginManager().registerEvents(this, this);
 
         List<CommandData> dataList = new ArrayList<>();
         List<String> tickCommands = new ArrayList<>();
@@ -67,7 +78,28 @@ public final class RTPlugin extends JavaPlugin {
         new CommandExecutor(this, dataList, tickCommands, secCommands);
     }
 
+    @EventHandler
+    private void ClickEvent(PlayerInteractEvent event) {
+        ItemStack itemStack = event.getItem();
+        if (itemStack == null) return;
+        if (!itemStack.getType().equals(Material.CARROT_ON_A_STICK)) return;
+        Random random = new Random();
+        Player player = event.getPlayer();
+        Scoreboard scoreboard = player.getScoreboard();
+        String playerName = player.getName();
 
+        Objective objective = scoreboard.getObjective("score1");
+        if (objective == null) return;
+        objective.getScore(playerName).setScore(random.nextInt(9) + 1);
+
+        objective = scoreboard.getObjective("score2");
+        if (objective == null) return;
+        objective.getScore(playerName).setScore(random.nextInt(9) + 1);
+
+        objective = scoreboard.getObjective("score3");
+        if (objective == null) return;
+        objective.getScore(playerName).setScore(random.nextInt(9) + 1);
+    }
 }
 
 class CommandExecutor extends Timer {
