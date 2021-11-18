@@ -1,9 +1,8 @@
 package net.kigawa.spigot.rtplugin;
 
+import net.kigawa.spigot.rtplugin.timer.RealTimer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import net.kigawa.spigot.rtplugin.timer.GameTimer;
-import net.kigawa.spigot.rtplugin.timer.RealTimer;
 import org.bukkit.Server;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
@@ -87,7 +86,7 @@ public final class RTPlugin extends JavaPlugin implements Listener {
         if (!itemStack.getType().equals(Material.CARROT_ON_A_STICK)) return;
         Random random = new Random();
         Player player = event.getPlayer();
-        Scoreboard scoreboard = player.getScoreboard();
+        Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
         String playerName = player.getName();
 
         Objective objective = scoreboard.getObjective("score1");
